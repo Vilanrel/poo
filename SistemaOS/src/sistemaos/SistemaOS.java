@@ -1,10 +1,12 @@
 package sistemaos;
 
+import javax.swing.JOptionPane;
+
 public class SistemaOS {
 
-//ttttt
     public static void main(String[] args) {
-
+        
+        String showInputDialog = JOptionPane.showInputDialog("Vanilton Breda");
     }
     
 }
