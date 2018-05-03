@@ -1,5 +1,4 @@
 package sistemaos;
-
 import javax.swing.JOptionPane;
 
 public class SistemaOS {
