@@ -6,7 +6,8 @@ public class SistemaOS {
 
     public static void main(String[] args) {
         
-        JOptionPane.showMessageDialog("Vanilton Breda dos Santos");
+        JOptionPane.showMessageDialog(null,"Vanilton Breda dos Santos");
+        JOptionPane.showMessageDialog(null,"Daiane");
     }
     
 }
