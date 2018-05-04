@@ -2,6 +2,7 @@ package br.com.infochip7.telas;
 
 import java.sql.*;
 import br.com.infochip7.dal.ModuloConexao;
+import javax.swing.JOptionPane;
 
 public class telaLogin extends javax.swing.JFrame {
 
@@ -10,10 +11,21 @@ public class telaLogin extends javax.swing.JFrame {
     ResultSet rs = null;
     
     public void logar (){
-        String sql = "SELECT * FROM TUSU WHERE NOME=? AND SENHA=?";
+        String sql = "SELECT * FROM TUSU WHERE LOGIN=? AND SENHA=?";
         try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1,txtUsuario.getText());
+            pst.setString(1,txtSenha.getText());
             
+            rs = pst.executeQuery();
+            if (rs.next()) {
+                TelaPrincipal principal = new TelaPrincipal();
+                principal.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido");
+            }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
         
     }
@@ -133,7 +145,7 @@ public class telaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+       logar();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
