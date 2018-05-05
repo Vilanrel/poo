@@ -10,6 +10,7 @@ public class telaLogin extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
+    
     public void logar (){
         String sql = "select * from tusu where nome=? and senha =?";
         try {
@@ -21,6 +22,9 @@ public class telaLogin extends javax.swing.JFrame {
             if (rs.next()) {
                 TelaPrincipal principal = new TelaPrincipal();
                 principal.setVisible(true);
+                this.dispose();
+                conexao.close();
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido");
             }
