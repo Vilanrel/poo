@@ -81,6 +81,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         MenCadUsu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
         MenCadUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Usuário.png"))); // NOI18N
         MenCadUsu.setText("Usuários");
+        MenCadUsu.setEnabled(false);
         MenCadUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenCadUsuActionPerformed(evt);
@@ -101,6 +102,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(MenCad);
 
         MenRel.setText("Relatórios");
+        MenRel.setEnabled(false);
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem1.setText("Serviços");
@@ -167,13 +169,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         usuario.setVisible(true);
         desktop.add(usuario);
     }//GEN-LAST:event_MenCadUsuActionPerformed
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Date data = new Date();
         DateFormat formatador = DateFormat.getDateInstance(DateFormat.SHORT);
         lblData.setText(formatador.format(data));
-        
-        
     }//GEN-LAST:event_formWindowActivated
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -182,13 +181,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_btnSairActionPerformed
-
     private void MenAjuSobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenAjuSobActionPerformed
         TelaSobre sobre = new TelaSobre();
         sobre.setVisible(true);
         desktop.add(sobre);
     }//GEN-LAST:event_MenAjuSobActionPerformed
-
     public static void main(String args[]) {
               
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -204,8 +201,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenCadCli;
     private javax.swing.JMenuItem MenCadEqui;
     private javax.swing.JMenuItem MenCadOs;
-    private javax.swing.JMenuItem MenCadUsu;
-    private javax.swing.JMenu MenRel;
+    public static javax.swing.JMenuItem MenCadUsu;
+    public static javax.swing.JMenu MenRel;
     private javax.swing.JMenu MenSob;
     private javax.swing.JButton btnSair;
     private javax.swing.JDesktopPane desktop;
@@ -213,6 +210,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblLogo;
-    private javax.swing.JLabel lblUsuario;
+    public static javax.swing.JLabel lblUsuario;
     // End of variables declaration//GEN-END:variables
 }

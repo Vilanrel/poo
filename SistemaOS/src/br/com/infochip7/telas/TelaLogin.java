@@ -1,49 +1,62 @@
 package br.com.infochip7.telas;
 
 import br.com.infochip7.dal.ModuloConexao;
+import java.awt.Color;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
-
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
-    public void logar(){
-        String sql = "SELECT * FROM TUSU WHERE LOGIN=? AND SENHA=?"; 
+
+    public void logar() {
+        String sql = "SELECT * FROM TUSU WHERE LOGIN=? AND SENHA=?";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtUsuario.getText());
             pst.setString(2, txtSenha.getText());
             rs = pst.executeQuery();
-            
+
             if (rs.next()) {
-                TelaPrincipal principal = new TelaPrincipal();
-                principal.setVisible(true);
-                this.dispose();
-                conexao.close();
-                
+                String perfil = rs.getString(4);
+                if (perfil.equals("SUPERVISOR")) {
+                    TelaPrincipal principal = new TelaPrincipal();
+                    principal.setVisible(true);
+                    TelaPrincipal.MenRel.setEnabled(true);
+                    TelaPrincipal.MenCadUsu.setEnabled(true);
+                    TelaPrincipal.lblUsuario.setText(rs.getString(1));
+                    TelaPrincipal.lblUsuario.setForeground(Color.red);
+                    this.dispose();
+                    conexao.close();
+                }else{
+                    TelaPrincipal principal = new TelaPrincipal();
+                    TelaPrincipal.lblUsuario.setText(rs.getString(1));
+                    principal.setVisible(true);
+                    this.dispose();
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário e/ou senha inválido");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+
     }
+
     public TelaLogin() {
         initComponents();
         conexao = ModuloConexao.conector();
-        
-        if(conexao != null){
+
+        if (conexao != null) {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/dbOK.png")));
-        }else{
+        } else {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/dbNOK.png")));
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -184,34 +197,33 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEntrarKeyPressed
 
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-        
+
     }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void txtSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyTyped
-        
+
     }//GEN-LAST:event_txtSenhaKeyTyped
     public static void main(String args[]) {
-            try {
-        for ( javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels() ) {
-            if ( "Nimbus".equals( info.getName() ) ) {
-                javax.swing.UIManager.setLookAndFeel( info.getClassName() );
-                break;
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
         }
-    } catch ( ClassNotFoundException ex ) {
-        ex.printStackTrace();
-    } catch ( InstantiationException ex ) {
-        ex.printStackTrace();
-    } catch ( IllegalAccessException ex ) {
-        ex.printStackTrace();
-    } catch ( javax.swing.UnsupportedLookAndFeelException ex ) {
-        ex.printStackTrace();
-    }
 
-        
-       java.awt.EventQueue.invokeLater(() -> {
-           new TelaLogin().setVisible(true);
-       });
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaLogin().setVisible(true);
+        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Usuario;
