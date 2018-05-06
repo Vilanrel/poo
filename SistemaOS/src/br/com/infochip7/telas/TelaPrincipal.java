@@ -1,141 +1,196 @@
 package br.com.infochip7.telas;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import static java.awt.SystemColor.desktop;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
+        try {
+    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+         if ("Nimbus".equals(info.getName())) {
+            UIManager.setLookAndFeel(info.getClassName());
+            break;
+        }
+    }
+        } catch (Exception e) {
+}
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel2 = new javax.swing.JLabel();
         Desktop = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        MenCad = new javax.swing.JMenu();
-        MenCadCli = new javax.swing.JMenuItem();
-        MenCadUsu = new javax.swing.JMenuItem();
-        MenCadEqu = new javax.swing.JMenuItem();
-        MenCadOco = new javax.swing.JMenuItem();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        MenBar = new javax.swing.JMenuBar();
+        menCad = new javax.swing.JMenu();
+        menCadCli = new javax.swing.JMenuItem();
+        menCadUsu = new javax.swing.JMenuItem();
+        menCadEqu = new javax.swing.JMenuItem();
+        menCadOs = new javax.swing.JMenuItem();
         MenRel = new javax.swing.JMenu();
-        MenRelOco = new javax.swing.JMenuItem();
-        MenAjuSob = new javax.swing.JMenu();
-        jMenuAjudaSobre = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        MenSai = new javax.swing.JMenu();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SGO - Sistema de Gerenciamento de Ocorrências");
+        setPreferredSize(new java.awt.Dimension(966, 680));
         setResizable(false);
-        setSize(new java.awt.Dimension(1366, 768));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
-        });
 
-        Desktop.setBackground(java.awt.SystemColor.activeCaption);
+        Desktop.setBackground(new java.awt.Color(204, 204, 255));
         Desktop.setPreferredSize(new java.awt.Dimension(640, 480));
 
         javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
         Desktop.setLayout(DesktopLayout);
         DesktopLayout.setHorizontalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 661, Short.MAX_VALUE)
         );
         DesktopLayout.setVerticalGroup(
             DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 459, Short.MAX_VALUE)
         );
 
-        MenCad.setText("Cadastro");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Logo.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
-        MenCadCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
-        MenCadCli.setText("Clientes");
-        MenCad.add(MenCadCli);
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/exit.png"))); // NOI18N
+        jButton1.setText("Sair");
+        jButton1.setActionCommand("");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        MenCadUsu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
-        MenCadUsu.setText("Usuários");
-        MenCad.add(MenCadUsu);
+        menCad.setText("Cadastro");
+        menCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadActionPerformed(evt);
+            }
+        });
 
-        MenCadEqu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
-        MenCadEqu.setText("Equipamentos");
-        MenCad.add(MenCadEqu);
+        menCadCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK));
+        menCadCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/cliente.png"))); // NOI18N
+        menCadCli.setText("Clientes");
+        menCad.add(menCadCli);
 
-        MenCadOco.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
-        MenCadOco.setText("Ocorrência");
-        MenCad.add(MenCadOco);
+        menCadUsu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
+        menCadUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Usuário.png"))); // NOI18N
+        menCadUsu.setText("Usuários");
+        menCadUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menCadUsuActionPerformed(evt);
+            }
+        });
+        menCad.add(menCadUsu);
 
-        jMenuBar1.add(MenCad);
+        menCadEqu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        menCadEqu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Equipamentos.png"))); // NOI18N
+        menCadEqu.setText("Equipamentos");
+        menCad.add(menCadEqu);
+
+        menCadOs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
+        menCadOs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Ocorrência.jpg"))); // NOI18N
+        menCadOs.setText("OS");
+        menCad.add(menCadOs);
+
+        MenBar.add(menCad);
 
         MenRel.setText("Relatórios");
 
-        MenRelOco.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK));
-        MenRelOco.setText("Ocorrências");
-        MenRel.add(MenRelOco);
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem5.setText("Serviços");
+        MenRel.add(jMenuItem5);
 
-        jMenuBar1.add(MenRel);
+        MenBar.add(MenRel);
 
-        MenAjuSob.setText("Ajuda");
+        MenSai.setText("Sair");
+        MenBar.add(MenSai);
 
-        jMenuAjudaSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        jMenuAjudaSobre.setText("Sobre");
-        jMenuAjudaSobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuAjudaSobreActionPerformed(evt);
-            }
-        });
-        MenAjuSob.add(jMenuAjudaSobre);
-
-        jMenuBar1.add(MenAjuSob);
-
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(MenBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 661, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(Desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(39, 39, 39))
         );
 
-        setSize(new java.awt.Dimension(710, 560));
+        setSize(new java.awt.Dimension(832, 519));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-      Date dataSistema = new Date();
-      SimpleDateFormat formato = new SimpleDateFormat ("dd/MM/yyyy");
+    private void menCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadActionPerformed
+        
+    }//GEN-LAST:event_menCadActionPerformed
 
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jMenuAjudaSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAjudaSobreActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuAjudaSobreActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void menCadUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menCadUsuActionPerformed
+        TelaUsuario usuario = new TelaUsuario();
+        usuario.setVisible(true);
+        Desktop.add(usuario);
+    }//GEN-LAST:event_menCadUsuActionPerformed
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new TelaPrincipal().setVisible(true);
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TelaPrincipal().setVisible(true);
+            }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Desktop;
-    private javax.swing.JMenu MenAjuSob;
-    private javax.swing.JMenu MenCad;
-    private javax.swing.JMenuItem MenCadCli;
-    private javax.swing.JMenuItem MenCadEqu;
-    private javax.swing.JMenuItem MenCadOco;
-    private javax.swing.JMenuItem MenCadUsu;
+    private javax.swing.JMenuBar MenBar;
     private javax.swing.JMenu MenRel;
-    private javax.swing.JMenuItem MenRelOco;
-    private javax.swing.JMenuItem jMenuAjudaSobre;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu MenSai;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenu menCad;
+    private javax.swing.JMenuItem menCadCli;
+    private javax.swing.JMenuItem menCadEqu;
+    private javax.swing.JMenuItem menCadOs;
+    private javax.swing.JMenuItem menCadUsu;
     // End of variables declaration//GEN-END:variables
 }
