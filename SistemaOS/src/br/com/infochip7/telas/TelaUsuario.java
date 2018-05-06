@@ -24,8 +24,43 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                 cboPerfil.setSelectedItem(rs.getString(5));
                 
             } else {
+                JOptionPane.showMessageDialog(null,"Usuário não cadastrado.");
+                txtNome.setText(null);
+                txtLogin.setText(null);
+                txtSenha.setText(null);
+                cboPerfil.setSelectedItem(null);
             }
                     
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+    private void adicionar(){
+        String sql = "INSERT INTO SISTEMAOS.TUSU (NOME, LOGIN, SENHA, PERFIL) VALUES (? ,? ,? ,? )";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtNome.getText());
+            pst.setString(2, txtLogin.getText());
+            pst.setString(3, txtSenha.getText());
+            pst.setString(4, cboPerfil.getSelectedItem().toString());
+            pst.executeUpdate();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+        } 
+    }
+    private void excluir(){
+        String sql = "DELETE FROM SISTEMAOS.TUSU WHERE CODIGO=?";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtCodigo.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Usuário excluído com sucesso.");
+            txtNome.setText(null);
+            txtLogin.setText(null);
+            txtSenha.setText(null);
+            cboPerfil.setSelectedItem(null);
+                
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
@@ -157,6 +192,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        cboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SUPERVISOR", "USUÁRIO" }));
         cboPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboPerfilActionPerformed(evt);
@@ -204,7 +240,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jblCodgio, jblLogin, jblNome, jblSenha});
@@ -276,11 +312,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+        adicionar();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-    
+        excluir();
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
