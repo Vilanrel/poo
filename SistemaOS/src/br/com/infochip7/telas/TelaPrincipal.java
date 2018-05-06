@@ -51,7 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SGO - Sistema de Gerenciamento de OcorrÃªncias");
+        setTitle("SGO - Sistema de Gerenciamento de Ocorrências");
         setPreferredSize(new java.awt.Dimension(966, 680));
         setResizable(false);
 
@@ -95,8 +95,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menCad.add(menCadCli);
 
         menCadUsu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.ALT_MASK));
-        menCadUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/UsuÃ¡rio.png"))); // NOI18N
-        menCadUsu.setText("UsuÃ¡rios");
+        menCadUsu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Usuário.png"))); // NOI18N
+        menCadUsu.setText("Usuários");
         menCadUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menCadUsuActionPerformed(evt);
@@ -110,16 +110,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menCad.add(menCadEqu);
 
         menCadOs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
-        menCadOs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/OcorrÃªncia.jpg"))); // NOI18N
+        menCadOs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Ocorrência.jpg"))); // NOI18N
         menCadOs.setText("OS");
         menCad.add(menCadOs);
 
         MenBar.add(menCad);
 
-        MenRel.setText("RelatÃ³rios");
+        MenRel.setText("Relatórios");
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem5.setText("ServiÃ§os");
+        jMenuItem5.setText("Serviços");
         MenRel.add(jMenuItem5);
 
         MenBar.add(MenRel);
