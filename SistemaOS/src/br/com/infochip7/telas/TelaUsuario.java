@@ -21,8 +21,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                 txtNome.setText(rs.getString(2));
                 txtLogin.setText(rs.getString(3));
                 txtSenha.setText(rs.getString(4));
-                cboPerfil.setSelectedItem(rs.getString(5));
-                
+                cboPerfil.setSelectedItem(rs.getString(4));
             } else {
                 JOptionPane.showMessageDialog(null,"Usuário não cadastrado.");
                 txtNome.setText(null);
@@ -44,6 +43,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             pst.setString(3, txtSenha.getText());
             pst.setString(4, cboPerfil.getSelectedItem().toString());
             pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
@@ -86,7 +86,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         btnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
         cboPerfil = new javax.swing.JComboBox<>();
         lblPerfil = new javax.swing.JLabel();
 
@@ -160,8 +160,8 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
         });
 
         btnSair.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/exit.png"))); // NOI18N
-        btnSair.setText("Sair");
+        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Voltar.png"))); // NOI18N
+        btnSair.setText("Voltar");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
@@ -180,15 +180,15 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Novo.png"))); // NOI18N
-        jButton2.setText("Novo");
-        jButton2.setMaximumSize(new java.awt.Dimension(105, 41));
-        jButton2.setMinimumSize(new java.awt.Dimension(105, 41));
-        jButton2.setPreferredSize(new java.awt.Dimension(105, 41));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNovo.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/Novo.png"))); // NOI18N
+        btnNovo.setText("Novo");
+        btnNovo.setMaximumSize(new java.awt.Dimension(105, 41));
+        btnNovo.setMinimumSize(new java.awt.Dimension(105, 41));
+        btnNovo.setPreferredSize(new java.awt.Dimension(105, 41));
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnNovoActionPerformed(evt);
             }
         });
 
@@ -225,7 +225,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jblNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -240,7 +240,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jblCodgio, jblLogin, jblNome, jblSenha});
@@ -254,7 +254,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jblCodgio)
                         .addGap(0, 0, 0)
@@ -323,15 +323,15 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
      
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        txtNome.setText(null);
+        txtLogin.setText(null);
+        txtSenha.setText(null);
+        cboPerfil.setSelectedItem(null);
+    }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        /*
-        int sair = JOptionPane.showConfirmDialog(null,"Tem certeza que deseja sair ?", "Atenção" , JOptionPane.YES_NO_OPTION);
-        if(sair == JOptionPane.YES_OPTION){
-        */   
+        setVisible(false);
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -346,11 +346,11 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cboPerfil;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jblCodgio;
     private javax.swing.JLabel jblLogin;
     private javax.swing.JLabel jblNome;
