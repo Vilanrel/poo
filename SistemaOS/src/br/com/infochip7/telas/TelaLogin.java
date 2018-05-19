@@ -2,9 +2,13 @@ package br.com.infochip7.telas;
 
 import br.com.infochip7.dal.ModuloConexao;
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class TelaLogin extends javax.swing.JFrame {
 
@@ -44,11 +48,12 @@ public class TelaLogin extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Sem Conexão com o Banco de Dados");
         }
-
     }
-
     public TelaLogin() {
         initComponents();
+        URL icone = getClass().getResource("/br/com/infochip7/icones/Logo.jpg");
+        Image iconeTitulo  = Toolkit.getDefaultToolkit().getImage(icone);
+        this.setIconImage(iconeTitulo);
         conexao = ModuloConexao.conector();
     
         if (conexao != null) {
@@ -56,8 +61,8 @@ public class TelaLogin extends javax.swing.JFrame {
         } else {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/infochip7/icones/dbNOK.png")));
         }
+        
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -73,6 +78,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INFOCHIP7 - Login");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName("Teste"); // NOI18N
         setResizable(false);
 
         jblBemVindo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -195,6 +202,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        logar();
     }//GEN-LAST:event_txtSenhaActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
@@ -204,9 +212,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btnEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnEntrarKeyPressed
         logar();
     }//GEN-LAST:event_btnEntrarKeyPressed
-
     private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
-
+    
     }//GEN-LAST:event_txtSenhaKeyPressed
 
     private void txtSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyTyped
@@ -215,6 +222,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         setVisible(false);
+        System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
     public static void main(String args[]) {
         try {
