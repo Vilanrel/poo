@@ -8,24 +8,25 @@ import javax.swing.JOptionPane;
 
 public class TelaCliente extends javax.swing.JInternalFrame {
 
-    Connection  conexao = null;
+    Connection conexao = null;
     PreparedStatement pst = null;
-    Result rs = null;
+    ResultSet rs = null;
     
-    private void pesquisar (){
-        String sql = "SELECT * FROM TBCLI WHERE IDCLI=?";
+    private void pesquisar(){
+        
+    String sql = "SELECT * FROM SISTEMAOS.TBCLI WHERE IDCLI = ?";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtCodigo.getText());
-            rs = (Result) pst.executeQuery();
+            rs=pst.executeQuery();
             
             if (rs.next()) {
+                txtCodigo.setText(rs.getString(1));
                 txtNome.setText(rs.getString(2));
                 txtDtNasc.setText(rs.getString(3));
                 txtCpfCnpj.setText(rs.getString(4));
                 txtEndereco.setText(rs.getString(5));
                 txtBairro.setText(rs.getString(6));
-                
                 txtCidade.setText(rs.getString(7));
                 txtCep.setText(rs.getString(8));
                 txtUf.setText(rs.getString(9));
@@ -33,13 +34,158 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 txtEmail.setText(rs.getString(11));
                 txtCadastro.setText(rs.getString(12));
                 txtIe.setText(rs.getString(13));
-                txtObservacoes.setText(rs.getString(14));
-                }
-                    
+                txtCelular.setText(rs.getString(14));
+                txtObservacoes.setText(rs.getString(15));
+            } else {
+                JOptionPane.showMessageDialog(null,"Usuário não cadastrado.");
+                txtCodigo.setText(null);
+                txtNome.setText(null);
+                txtDtNasc.setText(null);
+                txtCpfCnpj.setText(null);
+                txtEndereco.setText(null);
+                txtBairro.setText(null);
+                txtCidade.setText(null);
+                txtCep.setText(null);
+                txtUf.setText(null);
+                txtTelefone.setText(null);
+                txtEmail.setText(null);
+                txtCadastro.setText(null);
+                txtIe.setText(null);
+                txtCelular.setText(null);
+                txtObservacoes.setText(null);
+            }     
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
+        }
     }
-     
+    private void adicionar(){
+        String sql = "INSERT INTO SISTEMAOS.TBCLI (IDCLI,NOME,DTNASC,CPF,ENDERECO,BAIRRO,MUNICIPIO,CEP,UF,TELEFONE,EMAIL,CADASTRO,IE,CELULAR,OBSERVACOES) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? )";
+        try {
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1,txtCodigo.getText());
+                pst.setString(2,txtNome.getText());
+                pst.setString(3,txtDtNasc.getText());
+                pst.setString(4,txtCpfCnpj.getText());
+                pst.setString(5,txtEndereco.getText());
+                pst.setString(6,txtBairro.getText());
+                pst.setString(7,txtCidade.getText());
+                pst.setString(8,txtCep.getText());
+                pst.setString(9,txtUf.getText());
+                pst.setString(10,txtTelefone.getText());
+                pst.setString(11,txtEmail.getText());
+                pst.setString(12,txtCadastro.getText());
+                pst.setString(13,txtIe.getText());
+                pst.setString(14,txtCelular.getText());
+                pst.setString(15,txtObservacoes.getText());
+            
+            if (((txtCodigo.getText().isEmpty()) || (txtNome.getText().isEmpty()) || (txtCpfCnpj.getText().isEmpty()))) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios.");
+            } else {
+            
+            int adicionado = pst.executeUpdate();
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+                txtCodigo.setText(null);
+                txtNome.setText(null);
+                txtDtNasc.setText(null);
+                txtCpfCnpj.setText(null);
+                txtEndereco.setText(null);
+                txtBairro.setText(null);
+                txtCidade.setText(null);
+                txtCep.setText(null);
+                txtUf.setText(null);
+                txtTelefone.setText(null);
+                txtEmail.setText(null);
+                txtCadastro.setText(null);
+                txtIe.setText(null);
+                txtCelular.setText(null);
+                txtObservacoes.setText(null);
+            }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+        } 
+    }
+    private void alterar(){
+        String sql = "UPDATE SISTEMAOS.TBCLI SET IDCLI=?,NOME=?,DTNASC=?,CPF=?,ENDERECO=?,BAIRRO=?,MUNICIPIO=?,CEP=?,UF=?,TELEFONE=?,EMAIL=?,CADASTRO=?,IE=?,CELULAR=?,OBSERVACOES=?";
+        try {
+            pst = conexao.prepareStatement(sql);
+                pst.setString(1,txtCodigo.getText());
+                pst.setString(2,txtNome.getText());
+                pst.setString(3,txtDtNasc.getText());
+                pst.setString(4,txtCpfCnpj.getText());
+                pst.setString(5,txtEndereco.getText());
+                pst.setString(6,txtBairro.getText());
+                pst.setString(7,txtCidade.getText());
+                pst.setString(8,txtCep.getText());
+                pst.setString(9,txtUf.getText());
+                pst.setString(10,txtTelefone.getText());
+                pst.setString(11,txtEmail.getText());
+                pst.setString(12,txtCadastro.getText());
+                pst.setString(13,txtIe.getText());
+                pst.setString(14,txtCelular.getText());
+                pst.setString(15,txtObservacoes.getText());
+            
+            if (((txtCodigo.getText().isEmpty()) || (txtNome.getText().isEmpty()) || (txtCpfCnpj.getText().isEmpty()))) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios.");
+            } else {
+            
+            int adicionado = pst.executeUpdate();
+            if (adicionado > 0) {
+                JOptionPane.showMessageDialog(null, "Dados do cliente alterados cadastrado com sucesso!");
+                      txtCodigo.setText(null);
+                txtNome.setText(null);
+                txtDtNasc.setText(null);
+                txtCpfCnpj.setText(null);
+                txtEndereco.setText(null);
+                txtBairro.setText(null);
+                txtCidade.setText(null);
+                txtCep.setText(null);
+                txtUf.setText(null);
+                txtTelefone.setText(null);
+                txtEmail.setText(null);
+                txtCadastro.setText(null);
+                txtIe.setText(null);
+                txtCelular.setText(null);
+                txtObservacoes.setText(null);
+            }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+    private void excluir(){
+        String sql = "DELETE FROM SISTEMAOS.TBCLI WHERE IDCLI=?";
+        try {
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, txtCodigo.getText());
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Cliente excluído com sucesso.");
+                txtCodigo.setText(null);
+                txtNome.setText(null);
+                txtDtNasc.setText(null);
+                txtCpfCnpj.setText(null);
+                txtEndereco.setText(null);
+                txtBairro.setText(null);
+                txtCidade.setText(null);
+                txtCep.setText(null);
+                txtUf.setText(null);
+                txtTelefone.setText(null);
+                txtEmail.setText(null);
+                txtCadastro.setText(null);
+                txtIe.setText(null);
+                txtCelular.setText(null);
+                txtObservacoes.setText(null);
+                
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,e);
+        }
+    }
+    
+    
+    
+    
+    
     public TelaCliente() {
         initComponents();
         conexao = ModuloConexao.conector();
@@ -280,6 +426,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         });
 
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -289,6 +440,11 @@ public class TelaCliente extends javax.swing.JInternalFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -350,8 +506,8 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCodigo)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(53, 53, 53)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(93, 93, 93)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(txtCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -392,7 +548,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnExcluir, btnSair});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCadastro, txtCodigo, txtDtNasc});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCadastro, txtDtNasc});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,36 +674,20 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        
+    pesquisar();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        String sql = "INSERT INTO SISTEMAOS.TUSU (IDCLI,NOME,DTNASC,CPF,ENDERECO,BAIRRO,MUNICIPIO,CEP,UF,TELEFONE,EMAIL,CADASTRO,IE,CELULAR,OBSERVACOES) VALUES (? ,? ,? ,? ,? ,? ,? ,? ,? ,?, ? ,? ,? ,? ,?)";
-        try {
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, txtCodigo.getText());
-            pst.setString(2, txtNome.getText());
-            pst.setString(3, txtDtNasc.getText());
-            pst.setString(4, txtCpfCnpj.getText());
-            pst.setString(5, txtEndereco.getText());
-            pst.setString(6, txtBairro.getText());
-            pst.setString(7, txtCidade.getText());
-            pst.setString(8, txtCep.getText());
-            pst.setString(9, txtUf.getText());
-            pst.setString(10, txtTelefone.getText());
-            pst.setString(11, txtEmail.getText());
-            pst.setString(12, txtCadastro.getText());
-            pst.setString(13, txtIe.getText());
-            pst.setString(14, txtCelular.getText());
-            pst.setString(15, txtObservacoes.getText());
-          
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e);
-        } 
+        adicionar();
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        excluir();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        alterar();
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

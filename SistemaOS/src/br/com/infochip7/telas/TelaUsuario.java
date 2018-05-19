@@ -98,6 +98,7 @@ public class TelaUsuario extends javax.swing.JInternalFrame {
             pst.setString(1, txtCodigo.getText());
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null,"Usuário excluído com sucesso.");
+            txtCodigo.setText(null);
             txtNome.setText(null);
             txtLogin.setText(null);
             txtSenha.setText(null);
